@@ -4,10 +4,23 @@
         <title>Casino</title>
         <link href="casino.css" rel="stylesheet">
     </HEAD>
-<BODY>
+<BODY class="p-4">
     <script src="blackjack.js"></script>    
 
-<H1 class="text-5xl text-green-500 bg-black p-4 m-4">THIS IS JUST Start. We need to pay attention!</H1>
-<h2 class="">Add some texts</h2>
+    <div class="h-16 my-4 text-2xl font-bold text-center text-teal-500 bg-white">
+            Our Casino
+    </div>
+    <div id="casino_table" class="flex flex-col justify-between mx-16 bg-green-700 border-8 rounded-full h-96 border-amber-800">
+        <div id="dealers_cards" class="flex w-1/2 h-32 border-2 border-black place-self-center"> Dealers Cards
+                <div>Card 1</div>
+                <div>Card 2</div>
+
+        </div>
+        <div class="w-1/2 h-16 border-2 border-black place-self-center text-amber-300"> Dealer must draw on 16 and Stand on 17</div>
+        <div id="players_cards" class="w-1/2 h-32 border-2 border-black place-self-center"> Players Cards</div>
+    </div>
+    <div class="hidden h-8 my-4 bg-green-700">
+        deal hit & Stand
+    </div>
 </BODY>
 </HTML>
