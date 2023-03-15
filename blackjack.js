@@ -55,11 +55,102 @@ class Deck {
 }
 
 class Blackjack {
+  // def __init__(self):
+  // self.deck  = Deck()
+  // self.set_card_values()
+  // self.players_score = 0
+  // self.dealers_score = 0
+  // self.players_hand = []
+  // self.dealers_hand = []  
     constructor() { 
-        
+        this.deck  = new Deck()
+        this.set_card_values()
+        this.players_score = 0
+        this.dealers_score = 0
+        this.players_hand = []
+        this.dealers_hand = []  
     }
-}
+
+    // def set_card_values(self):
+    // for card in self.deck.cards:
+    //     match card["face"]:
+    //         case 'A': 
+    //             value = 1
+    //         case 'K':
+    //             value = 10
+    //         case 'Q':
+    //             value = 10
+    //         case 'J': 
+    //             value = 10
+    //         case _: 
+    //             value = card["face"]
+    //     card["value"] = value
+    set_card_values() {
+      for (let card of this.deck.cards) {
+        switch(card.face) {
+          case 'A':
+            card.value = 1;
+            break;
+          case 'K':
+          case 'Q':
+          case 'J':
+          case '10':
+            card.value = 10;
+            break;
+          default:
+            card.value = card.face;
+        }
+      }
+    }
+
+    html_card(card) {
+      let color = '';
+          if(['♥','♦'].includes(card.suit)) {
+            color = 'text-red-500';
+          }
+          let card_center = "";
+          let symbols = 0;
+          let styling = "";
+          switch (card.face) {
+            case "A":
+              symbols = 1;
+              styling ="text-4xl font-bold"
+              break;
+            case "K":
+              card_center = 'K'
+              styling = "text-4xl font-bold";
+              break;
+              case "Q":
+                card_center = 'Q'
+                styling = "text-4xl font-bold";
+                break;
+                case "J":
+                  card_center = 'J'
+                  styling = "text-4xl font-bold";
+                  break;
+            default: symbols = card.value;
+          }
+
+
+
+         if(card_center=="") {
+          for (let i = 1; i <= card.value; i++) {
+            card_center += `<div class="mx-1">${card.suit}</div>`
+          }
+        }
+
+      
+      return `<div class="flex bg-white ${color} mx-2 h-28 w-16 flex-col justify-between rounded-md border-2 border-black text-xs">
+      <div class="m-1">${card['face']}${card['suit']}</div>
+      <div class="flex flex-wrap text-center justify-evenly ${styling}">
+              ${card_center}
+      </div>
+      <div class="m-1 text-left rotate-180">${card['face']}${card['suit']}</div>
+  </div>
+      `
+    }
+  }
 
 console.log("I am loaded.")
 
-let d = new Deck()
+let game = new Blackjack()
