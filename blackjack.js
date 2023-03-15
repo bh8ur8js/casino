@@ -149,8 +149,39 @@ class Blackjack {
   </div>
       `
     }
+
+    hit(hand) {
+      let card = this.deck.deal_card();
+      hand.push(card);
+    }
+
+    hitPlayer() {
+     this.hit(this.players_hand);
+     var p = document.getElementById("dealers_cards")
+     p.innerHTML += this.html_card(this.players_hand[this.players_hand.length-1])
+    }
+
+    play() {
+      console.log('reset table');
+      this.reset_table();
+      console.log('deal hand');
+      console.log('display deal');      
+      console.log('check player');
+    }
+
+    reset_table() {
+      var d = document.getElementById('players_cards')
+      var p = document.getElementById('dealers_cards');
+      p.innerHTML = "";
+      d.innerHTML = "";
+    }
+
   }
 
-console.log("I am loaded.")
+  function start() {
+    game = new Blackjack()
+    game.play()
+  }
 
-let game = new Blackjack()
+
+

@@ -16,10 +16,14 @@
 
         </div>
         <div class="w-1/2 h-16 border-2 border-black place-self-center text-amber-300"> Dealer must draw on 16 and Stand on 17</div>
-        <div id="players_cards" class="w-1/2 h-32 border-2 border-black place-self-center"> Players Cards</div>
+        <div id="players_cards" class="w-1/2 h-32 border-2 border-black place-self-center">
+
+
+        </div>
     </div>
-    <div class="hidden h-8 my-4 bg-green-700">
-        deal hit & Stand
+    <div class="my-4 text-center">
+        <button id="deal_button" onclick="start()" class="rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Deal</button>            
+        <button id="hit_button" onclick="game.hitPlayer();" class="rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Hit</button>
     </div>
 </BODY>
 </HTML>
