@@ -11,19 +11,22 @@
             Our Casino
     </div>
     <div id="casino_table" class="flex flex-col justify-between mx-16 bg-green-700 border-8 rounded-full h-96 border-amber-800">
-        <div id="dealers_cards" class="flex w-1/2 h-32 border-2 border-black place-self-center"> 
+        <div  id="dealers_cards" class="flex w-1/2 h-32 p-2 border-2 border-black place-self-center"> 
                 
 
         </div>
-        <div class="w-1/2 h-16 border-2 border-black place-self-center text-amber-300"> Dealer must draw on 16 and Stand on 17</div>
-        <div id="players_cards" class="w-1/2 h-32 border-2 border-black place-self-center">
+        <div class="w-1/2 h-16 text-center border-2 border-black place-self-center text-amber-300"> Dealer must draw on 16 and Stand on 17
+                    <div id="message" class="text-xl text-white"> Message</div>
+        </div>
+        <div id="players_cards" class="flex w-1/2 h-32 p-2 border-2 border-black place-self-center">
 
 
         </div>
     </div>
     <div class="my-4 text-center">
-        <button id="deal_button" onclick="start()" class="rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Deal</button>            
-        <button id="hit_button" onclick="game.hitPlayer();" class="rounded-md bg-indigo-600 py-1.5 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Hit</button>
+        <button id="deal_button" onclick="start()" class="button">Deal</button>            
+        <button id="hit_button" onclick="game.hitPlayer();" class="hidden button">Hit</button>
+        <button id="stand_button" onclick="game.dealersTurn();" class="hidden button">Stand</button>
     </div>
 </BODY>
 </HTML>
