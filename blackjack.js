@@ -57,13 +57,6 @@ class Deck {
 class Blackjack {
  
     constructor() {  
-      // def __init__(self):
-      // self.deck  = Deck()
-      // self.set_card_values()
-      // self.players_score = 0
-      // self.dealers_score = 0
-      // self.players_hand = []
-      // self.dealers_hand = []  
         this.deck  = new Deck()
         this.set_card_values()
         this.players_score = 0
@@ -74,20 +67,7 @@ class Blackjack {
 
     
     set_card_values() {
-      // def set_card_values(self):
-    // for card in self.deck.cards:
-    //     match card["face"]:
-    //         case 'A': 
-    //             value = 1
-    //         case 'K':
-    //             value = 10
-    //         case 'Q':
-    //             value = 10
-    //         case 'J': 
-    //             value = 10
-    //         case _: 
-    //             value = card["face"]
-    //     card["value"] = value
+    
       for (let card of this.deck.cards) {
         switch(card.face) {
           case 'A':
@@ -132,8 +112,6 @@ class Blackjack {
                   break;
             default: symbols = card.value;
           }
-
-
 
          if(card_center=="") {
           for (let i = 1; i <= card.value; i++) {
@@ -187,6 +165,7 @@ class Blackjack {
       var p = document.getElementById('dealers_cards');
       p.innerHTML = "";
       d.innerHTML = "";
+      this.message("Let's Play")
     }
 
     deal_hand() {
@@ -204,10 +183,8 @@ class Blackjack {
       p.innerHTML += this.html_card(this.players_hand[0])
       p.innerHTML += this.html_card(this.players_hand[1])
       var d = document.getElementById('dealers_cards')
-      d.innerHTML += this.html_card(this.dealers_hand[1])
+      d.innerHTML += this.html_card(this.dealers_hand[0])
     }
-
-
 
     has_blackjack(hand) {
         return this.best_hand(hand) == 21 &&  hand.length == 2;
@@ -223,17 +200,17 @@ class Blackjack {
 
     check_player() {
       if (this.has_blackjack(this.players_hand)) {
-        this.message("You got blackjack!")
-        // hide the hit and stand button & show the deal button  
+          this.message('BlackJack!!')
+          this.toggleButtons();     
       }
       if (this.is_bust(this.players_hand)) {
-        this.message("You Bust")
-        // hide the hit and stand button & show the deal button  
+          this.message('You Bust!!')                  
+      this.toggleButtons();
       }
-      if (this.best_hand(this.players_hand)==21) {
-        this.message("Player Stands on 21")   
+      if(this.best_hand(this.players_hand)==21) {
+          this.toggleButtons();
       }
-    }
+  }
     
     message(message) {
       var m = document.getElementById('message');
@@ -254,17 +231,7 @@ class Blackjack {
 
 
     evaluate_hand(hand) {
-      // def evaluate_hand(self,hand):
-      // # total = hand.map {|card| card[:value]}.sum        
-      // # return [total, aces(hand) ? total+10 : total ] << 0 
-      // total = 0
-      // results = []
-      // for card in hand:
-      //     total+=card['value']
-      // results.append(total)
-      // if self.aces(hand):
-      //     results.append(total+10)      
-      // return results
+     
       let total = 0
       let results = []
       for (let card of hand) {
@@ -281,13 +248,14 @@ class Blackjack {
     best_hand(hand) {
       let best = -1;
       let hands = this.evaluate_hand(hand)
-      for (let hand in hands) {
+      for (let hand of hands) {
         if (hand> best && hand < 22) {
           best = hand
         }
       }
       return best;
     }
+
     toggleButtons() {
       var b = document.getElementsByTagName("button")
             b[0].classList.toggle('hidden');
@@ -307,31 +275,36 @@ class Blackjack {
         this.message("Push");
         console.log('Push');
     }
-    this.toggleButton();
+    this.toggleButtons();
     }
 
     dealersTurn() {
-        var p = document.getElementById('dealers_cards')
-        p.innerHTML +=this.html_card(this.dealers_hand[1]);   
-        while (this.not_bust(this.players_hand) && this.not_bust(this.dealers_hand) ) {
+      var p = document.getElementById('dealers_cards')
+      p.innerHTML +=this.html_card(this.dealers_hand[1]);
+      while (this.not_bust(this.players_hand) && (this.not_bust(this.dealers_hand))) { 
           if(this.has_blackjack(this.dealers_hand)) {
-            this.message("Deal has blackjack");
-            break;
+              this.message('Dealer has Blackjack');
+              console.log("Blackjack!")
+              break;
           }
           if(this.best_hand(this.dealers_hand)<17) {
-            this.hitDealer();
+              this.hitDealer();
+              console.log(`Dealer's Hand: ${this.best_hand(this.dealers_hand, "player")}`);
           }
           if(this.is_bust(this.dealers_hand)) {
-            this.message('Dealer Busts. You Win!');
-            this.toggleButtons();
-          } else if (this.best_hand(this.dealers_hand)>=17) {
-            this.message(`Dealer Stands on ${this.best_hand(this.dealers_hand)}`);
-            this.whoWon();
-            this.toggleButtons();
-            break;
+              this.message('Dealer Busts. You Win!');
+              console.log('Dealer Busts.  You Win!');
+              this.toggleButtons();
+          } else if(this.best_hand(this.dealers_hand)>=17) {
+              this.message(`Dealer Stands on ${this.best_hand(this.dealers_hand)}`);
+              console.log(`Dealer Stands on ${this.best_hand(this.dealers_hand)}`);
+              this.whoWon();                
+              break;
+          } else {
           }
-        }
-    }
+
+      }
+  }
 
   }
 
